@@ -1,0 +1,24 @@
+LELA ADMIN DASHBOARD — PROTOTYPE
+
+1. This build keeps reports, bans, admin sessions, and admin data in server memory.
+   A Railway restart clears them. PostgreSQL should replace this before production.
+
+2. Railway variables required:
+   ADMIN_USERNAME=your-admin-username
+   ADMIN_PASSWORD=your-long-random-password
+
+3. Open:
+   https://YOUR-RAILWAY-DOMAIN/admin
+
+4. The dashboard currently includes:
+   - Overview: online users, active matches, waiting users, pending reports
+   - Users: connected anonymous browser IDs; disconnect/ban/unban
+   - Reports: view reason; resolve/dismiss; ban reported user for 24h
+   - Bans: view active bans and unban
+
+5. The public app sends one anonymous browser ID through WebSocket. No name/email is collected by this feature.
+
+6. For production:
+   - Store admin accounts, reports, bans, audit logs in PostgreSQL.
+   - Use hashed passwords and 2FA.
+   - Move distributed online/match state to Redis if you run more than one backend instance.
