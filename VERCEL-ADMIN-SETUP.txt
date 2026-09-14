@@ -1,0 +1,19 @@
+LELA ADMIN DASHBOARD - VERCEL SETUP
+
+1. In Vercel -> Project -> Settings -> Environment Variables add:
+   ADMIN_USERNAME = your admin username
+   ADMIN_PASSWORD = your admin password
+   ADMIN_SESSION_SECRET = a long random secret (recommended)
+
+2. Select Production for each variable.
+
+3. Redeploy the latest Production deployment after saving the variables.
+
+4. Open:
+   https://YOUR-DOMAIN/admin
+
+IMPORTANT:
+- The admin login/session is now handled by /api/admin/[...path].js on Vercel.
+- This fixes the immediate "Session expired. Sign in again." problem caused by the old server.js session store not running on Vercel.
+- The current Vercel-only API does not have access to the live WebSocket process, so Online now, Active matches, Waiting, and Connected users will show 0 until the signaling/backend service is connected.
+- Reports/bans are still prototype in-memory data in this Vercel function and are not a production database.

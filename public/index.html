@@ -2,18 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-  />
-  <title>ሌላ</title>
-  <link rel="icon" type="image/png" href="svgbg.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>ሌላ — Random Video Chat</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  >
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -36,15 +29,13 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    html,
-    body {
+    html, body {
       width: 100%;
       height: 100%;
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background:
-        radial-gradient(circle at 15% 20%, #151838 0%, transparent 45%),
-        radial-gradient(circle at 85% 80%, #21123d 0%, transparent 45%),
-        var(--bg-dark);
+      background: radial-gradient(circle at 15% 20%, #151838 0%, transparent 45%),
+                  radial-gradient(circle at 85% 80%, #21123d 0%, transparent 45%),
+                  var(--bg-dark);
       color: var(--text-main);
       overflow: hidden;
     }
@@ -79,6 +70,7 @@
       text-decoration: none;
     }
 
+    /* Screen blend mode eliminates pure black box background around image */
     .logo-image-wrapper {
       display: flex;
       align-items: center;
@@ -97,12 +89,7 @@
       font-size: 26px;
       font-weight: 800;
       letter-spacing: 0.5px;
-      background: linear-gradient(
-        135deg,
-        #00e5ff 0%,
-        #7c4dff 50%,
-        #ff55ff 100%
-      );
+      background: linear-gradient(135deg, #00e5ff 0%, #7c4dff 50%, #ff55ff 100%);
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -149,20 +136,9 @@
     }
 
     @keyframes pulse {
-      0% {
-        transform: scale(0.95);
-        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
-      }
-
-      70% {
-        transform: scale(1);
-        box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
-      }
-
-      100% {
-        transform: scale(0.95);
-        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
-      }
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+      70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
     }
 
     /* ---------------- MAIN LAYOUT ---------------- */
@@ -210,14 +186,12 @@
       background: #0c0e1a;
     }
 
-    /* ---------------- CAMERA DIRECTION FIX ---------------- */
-
-    /* Your own camera preview is mirrored like a normal self-view. */
+    /* Camera direction: mirror only your own preview.
+       The stranger's video stays in the real left/right direction. */
     #localVideo {
       transform: scaleX(-1);
     }
 
-    /* Stranger's camera is never mirrored. */
     #remoteVideo {
       transform: none;
     }
@@ -239,7 +213,7 @@
       gap: 6px;
     }
 
-    /* ---------------- PLACEHOLDERS ---------------- */
+    /* ---------------- PLACEHOLDERS (LELA STYLE — NO CIRCLES) ---------------- */
 
     .video-placeholder {
       position: absolute;
@@ -250,19 +224,14 @@
       flex-direction: column;
       gap: 14px;
       color: var(--text-muted);
-      background:
-        radial-gradient(
-          circle at center,
-          rgba(124, 77, 255, 0.08),
-          transparent 60%
-        ),
-        #0c0e1a;
+      background: radial-gradient(circle at center, rgba(124, 77, 255, 0.08), transparent 60%), #0c0e1a;
       pointer-events: none;
       text-align: center;
       padding: 16px;
     }
 
-    .placeholder-icon {
+    /* Icon wrapper — no visible circle, just the icon itself */
+        .placeholder-icon {
       position: relative;
       display: flex;
       align-items: center;
@@ -278,6 +247,8 @@
       filter: drop-shadow(0 0 8px rgba(124, 77, 255, 0.3));
     }
 
+
+    /* LELA radar animation — invisible rings expanding outward from the icon */
     .radar-sweep {
       position: absolute;
       width: 90px;
@@ -290,17 +261,11 @@
     }
 
     @keyframes radar {
-      0% {
-        transform: scale(0.3);
-        opacity: 0.8;
-      }
-
-      100% {
-        transform: scale(1.8);
-        opacity: 0;
-      }
+      0% { transform: scale(0.3); opacity: 0.8; }
+      100% { transform: scale(1.8); opacity: 0; }
     }
 
+    /* Second delayed ring for a richer radar effect */
     .radar-sweep.delayed {
       animation-delay: 1s;
     }
@@ -329,7 +294,7 @@
       pointer-events: auto;
     }
 
-    /* ---------------- CHAT DISABLED STATE ---------------- */
+        /* ---------------- CHAT DISABLED STATE ---------------- */
 
     .chat-panel.chat-off .chat-messages {
       opacity: 0.35;
@@ -350,6 +315,7 @@
       font-style: italic;
     }
 
+
     .chat-messages {
       display: flex;
       flex-direction: column;
@@ -362,28 +328,16 @@
       overscroll-behavior: contain;
       scrollbar-width: none;
       -ms-overflow-style: none;
-
-      -webkit-mask-image:
-        linear-gradient(
-          to bottom,
-          transparent 0%,
-          black 25%,
-          black 100%
-        );
-
-      mask-image:
-        linear-gradient(
-          to bottom,
-          transparent 0%,
-          black 25%,
-          black 100%
-        );
+      /* LELA's signature fade-out mask at the top of the message list */
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 25%, black 100%);
+      mask-image: linear-gradient(to bottom, transparent 0%, black 25%, black 100%);
     }
 
     .chat-messages::-webkit-scrollbar {
       display: none;
     }
 
+    /* LELA bubble style — glass blur, tail corners, slide-up animation */
     .chat-message {
       width: fit-content;
       max-width: 85%;
@@ -395,23 +349,12 @@
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-      animation:
-        slideUpFade
-        0.25s
-        cubic-bezier(0.16, 1, 0.3, 1)
-        forwards;
+      animation: slideUpFade 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
     @keyframes slideUpFade {
-      0% {
-        opacity: 0;
-        transform: translateY(12px) scale(0.95);
-      }
-
-      100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
+      0% { opacity: 0; transform: translateY(12px) scale(0.95); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
     }
 
     .chat-message.mine {
@@ -475,7 +418,7 @@
       background: var(--accent-purple-hover);
     }
 
-    /* ---------------- CONTROL BAR ---------------- */
+    /* ---------------- CONTROL BAR (GROUPED, SPACIOUS, ALIVE) ---------------- */
 
     .controls {
       min-height: 76px;
@@ -537,11 +480,7 @@
     }
 
     .control-button.primary {
-      background: linear-gradient(
-        135deg,
-        var(--accent-purple) 0%,
-        #6366f1 100%
-      );
+      background: linear-gradient(135deg, var(--accent-purple) 0%, #6366f1 100%);
       border: none;
       color: white;
       box-shadow: 0 4px 18px var(--accent-glow);
@@ -549,11 +488,7 @@
 
     .control-button.primary:hover:not(:disabled) {
       box-shadow: 0 6px 26px rgba(124, 77, 255, 0.55);
-      background: linear-gradient(
-        135deg,
-        var(--accent-purple-hover) 0%,
-        #7180ff 100%
-      );
+      background: linear-gradient(135deg, var(--accent-purple-hover) 0%, #7180ff 100%);
     }
 
     .control-button.stop {
@@ -586,8 +521,6 @@
       color: #fecaca;
     }
 
-    /* ---------------- RECORDING INDICATOR ---------------- */
-
     .recording-indicator {
       position: absolute;
       top: 12px;
@@ -607,9 +540,7 @@
       -webkit-backdrop-filter: blur(10px);
     }
 
-    .recording-indicator.show {
-      display: inline-flex;
-    }
+    .recording-indicator.show { display: inline-flex; }
 
     .recording-indicator-global {
       position: static;
@@ -636,14 +567,8 @@
     }
 
     @keyframes recordingPulse {
-      0%,
-      100% {
-        opacity: 1;
-      }
-
-      50% {
-        opacity: 0.35;
-      }
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.35; }
     }
 
     .record-modal-message {
@@ -679,9 +604,7 @@
       backdrop-filter: blur(8px);
     }
 
-    .modal-backdrop.show {
-      display: flex;
-    }
+    .modal-backdrop.show { display: flex; }
 
     .report-modal {
       width: 100%;
@@ -693,22 +616,9 @@
       box-shadow: 0 30px 90px rgba(0, 0, 0, 0.5);
     }
 
-    .report-modal h2 {
-      margin-bottom: 8px;
-      font-size: 20px;
-    }
-
-    .report-modal p {
-      margin-bottom: 18px;
-      color: var(--text-muted);
-      font-size: 14px;
-    }
-
-    .report-options {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
+    .report-modal h2 { margin-bottom: 8px; font-size: 20px; }
+    .report-modal p { margin-bottom: 18px; color: var(--text-muted); font-size: 14px; }
+    .report-options { display: flex; flex-direction: column; gap: 10px; }
 
     .report-option {
       display: flex;
@@ -730,12 +640,7 @@
       accent-color: var(--accent-purple);
     }
 
-    .modal-actions {
-      display: flex;
-      justify-content: flex-end;
-      gap: 10px;
-      margin-top: 24px;
-    }
+    .modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 24px; }
 
     .modal-button {
       height: 40px;
@@ -751,19 +656,14 @@
       transition: background 0.2s ease;
     }
 
-    .modal-button:hover {
-      background: rgba(255, 255, 255, 0.1);
-    }
+    .modal-button:hover { background: rgba(255, 255, 255, 0.1); }
 
     .modal-button.submit {
-      background: linear-gradient(
-        135deg,
-        var(--accent-purple) 0%,
-        #6366f1 100%
-      );
+      background: linear-gradient(135deg, var(--accent-purple) 0%, #6366f1 100%);
       border: none;
       box-shadow: 0 4px 16px var(--accent-glow);
     }
+
 
     /* ---------------- RECORDING RESULT MODAL ---------------- */
 
@@ -777,16 +677,8 @@
       box-shadow: 0 30px 90px rgba(0, 0, 0, 0.5);
     }
 
-    .recording-result-modal h2 {
-      margin-bottom: 8px;
-      font-size: 20px;
-    }
-
-    .recording-result-modal p {
-      margin-bottom: 16px;
-      color: var(--text-muted);
-      font-size: 14px;
-    }
+    .recording-result-modal h2 { margin-bottom: 8px; font-size: 20px; }
+    .recording-result-modal p { margin-bottom: 16px; color: var(--text-muted); font-size: 14px; }
 
     .platform-title {
       margin-top: 18px;
@@ -878,52 +770,28 @@
     }
 
     @media (max-width: 680px) {
-      .recording-result-modal {
-        padding: 16px;
-        border-radius: 16px;
-      }
-
-      .recording-indicator-global {
-        margin-bottom: 8px;
-      }
-
-      .recording-result-actions {
-        justify-content: stretch;
-      }
-
-      .recording-result-actions .modal-button {
-        flex: 1 1 100%;
-      }
+      .recording-result-modal { padding: 16px; border-radius: 16px; }
+      .recording-indicator-global { margin-bottom: 8px; }
+      .recording-result-actions { justify-content: stretch; }
+      .recording-result-actions .modal-button { flex: 1 1 100%; }
     }
 
-    /* ========================================================================== 
+    /* ==========================================================================
        RESPONSIVE — stacked video layout on phones
        ========================================================================== */
 
     @media (max-width: 680px) {
-
       .top-bar {
         padding: 0 12px;
         height: 56px;
         min-height: 56px;
       }
 
-      .logo-img {
-        height: 34px;
-      }
+      .logo-img { height: 34px; }
+      .logo-text { font-size: 22px; }
 
-      .logo-text {
-        font-size: 22px;
-      }
-
-      .status {
-        display: none;
-      }
-
-      .online-count {
-        font-size: 12px;
-        padding: 4px 10px;
-      }
+      .status { display: none; }
+      .online-count { font-size: 12px; padding: 4px 10px; }
 
       .main-container {
         padding: 8px;
@@ -931,15 +799,11 @@
 
       .video-grid {
         grid-template-columns: 1fr;
-        grid-template-rows:
-          minmax(0, 1fr)
-          minmax(0, 1.25fr);
+        grid-template-rows: minmax(0, 1fr) minmax(0, 1.25fr);
         gap: 10px;
       }
 
-      .video-card {
-        border-radius: 12px;
-      }
+      .video-card { border-radius: 12px; }
 
       .video-label {
         font-size: 10px;
@@ -958,9 +822,7 @@
         height: 26px;
       }
 
-      .placeholder-text {
-        font-size: 12px;
-      }
+      .placeholder-text { font-size: 12px; }
 
       .radar-sweep {
         width: 60px;
@@ -972,23 +834,11 @@
         padding: 6px 8px;
       }
 
-      .chat-messages {
-        max-height: 110px;
-      }
+      .chat-messages { max-height: 110px; }
 
-      .chat-input-row {
-        padding: 4px;
-      }
-
-      .chat-input {
-        font-size: 12px;
-      }
-
-      .send-button {
-        height: 28px;
-        padding: 0 10px;
-        font-size: 11px;
-      }
+      .chat-input-row { padding: 4px; }
+      .chat-input { font-size: 12px; }
+      .send-button { height: 28px; padding: 0 10px; font-size: 11px; }
 
       .chat-panel {
         bottom: 8px;
@@ -1019,14 +869,8 @@
     }
 
     @media (max-width: 380px) {
-      .logo-text {
-        font-size: 18px;
-      }
-
-      .control-button {
-        padding: 0 10px;
-        font-size: 11px;
-      }
+      .logo-text { font-size: 18px; }
+      .control-button { padding: 0 10px; font-size: 11px; }
     }
   </style>
 </head>
@@ -1037,24 +881,14 @@
     <!-- HEADER -->
     <header class="top-bar">
       <a href="#" class="logo">
-
         <div class="logo-image-wrapper">
-          <img
-            src="svgbg.png"
-            alt="LELA Logo"
-            class="logo-img"
-          />
+          <img src="svgbg.png" alt="LELA Logo" class="logo-img" />
         </div>
-
         <span class="logo-text">ሌላ</span>
       </a>
 
       <div class="header-right">
-
-        <div
-          id="status"
-          class="status"
-        >
+        <div id="status" class="status">
           Click Start Camera to begin
         </div>
 
@@ -1065,97 +899,59 @@
           title="People currently connected"
         >
           <span class="online-dot"></span>
-
-          <span id="onlineCountText">
-            0 online
-          </span>
+          <span id="onlineCountText">0 online</span>
         </div>
-
       </div>
     </header>
 
     <!-- MAIN VIEW -->
     <main class="main-container">
 
-      <!-- RECORDING STATUS: ABOVE THE VIDEO AREA -->
-      <div
-        id="recordingStatus"
-        class="recording-indicator recording-indicator-global"
-        aria-live="polite"
-      >
+      <!-- RECORDING STATUS: ABOVE THE VIDEO AREA, NEVER OVER THE VIDEO -->
+      <div id="recordingStatus" class="recording-indicator recording-indicator-global" aria-live="polite">
         <span class="recording-dot"></span>
-
-        <span>
-          Recording
-          <strong id="recordingTime">00:00</strong>
-        </span>
+        <span>Recording <strong id="recordingTime">00:00</strong></span>
       </div>
 
       <div class="video-grid">
 
         <!-- STRANGER CARD -->
         <section class="video-card">
-
           <video
             id="remoteVideo"
             autoplay
             playsinline
           ></video>
 
+
           <div class="video-label">
-
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-              <circle cx="12" cy="7" r="4"></circle>
-            </svg>
-
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
             Stranger
           </div>
 
-          <div
+        <div
             id="remotePlaceholder"
             class="video-placeholder"
           >
-
             <div class="placeholder-icon">
-
               <div class="radar-sweep"></div>
               <div class="radar-sweep delayed"></div>
-
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                 <circle cx="9" cy="7" r="4"></circle>
                 <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
                 <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
               </svg>
-
             </div>
-
             <div class="placeholder-text">
               Waiting for partner...
             </div>
-
           </div>
 
         </section>
 
         <!-- YOU CARD -->
         <section class="video-card">
-
           <video
             id="localVideo"
             autoplay
@@ -1164,19 +960,7 @@
           ></video>
 
           <div class="video-label">
-
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
-              <circle cx="12" cy="13" r="4"></circle>
-            </svg>
-
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
             You
           </div>
 
@@ -1184,30 +968,12 @@
             id="localPlaceholder"
             class="video-placeholder"
           >
-
             <div class="placeholder-icon">
-
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path>
-                <line
-                  x1="1"
-                  y1="1"
-                  x2="23"
-                  y2="23"
-                ></line>
-              </svg>
-
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
             </div>
-
             <div class="placeholder-text">
               Camera Off
             </div>
-
           </div>
 
           <!-- CHAT FLOATING OVER YOUR VIDEO -->
@@ -1222,7 +988,6 @@
               id="chatForm"
               class="chat-input-row"
             >
-
               <input
                 id="chatInput"
                 class="chat-input"
@@ -1239,21 +1004,18 @@
               >
                 Send
               </button>
-
             </form>
 
           </div>
-
         </section>
 
       </div>
     </main>
 
-    <!-- CONTROLS -->
+    <!-- CONTROLS (GROUPED) -->
     <footer class="controls">
 
       <div class="control-group">
-
         <button
           id="startButton"
           class="control-button primary"
@@ -1270,11 +1032,9 @@
         >
           ⏹ Stop
         </button>
-
       </div>
 
       <div class="control-group">
-
         <button
           id="nextButton"
           class="control-button primary"
@@ -1310,7 +1070,6 @@
         >
           🚩 Report
         </button>
-
       </div>
 
     </footer>
@@ -1318,16 +1077,9 @@
   </div>
 
   <!-- RECORDING RESULT -->
-  <div
-    id="recordingResultBackdrop"
-    class="modal-backdrop"
-  >
-
+  <div id="recordingResultBackdrop" class="modal-backdrop">
     <div class="recording-result-modal">
-
-      <h2>
-        Your encounter is ready 🎬
-      </h2>
+      <h2>Your encounter is ready 🎬</h2>
 
       <p id="recordingResultText">
         Your recording was created locally on this device.
@@ -1341,81 +1093,40 @@
         preload="metadata"
       ></video>
 
-      <div
-        id="recordingLocalNote"
-        class="recording-local-note"
-      >
-        🔒
-        <strong>Not uploaded.</strong>
+      <div id="recordingLocalNote" class="recording-local-note">
+        🔒 <strong>Not uploaded.</strong>
         The recording is only in this browser right now.
         Choose a platform below and the export will be prepared on this device.
       </div>
 
-      <div class="platform-title">
-        Where are you sharing this?
-      </div>
-
-      <div
-        id="platformOptions"
-        class="platform-options"
-      >
-
-        <button
-          type="button"
-          class="platform-option selected"
-          data-platform="tiktok"
-        >
+      <div class="platform-title">Where are you sharing this?</div>
+      <div id="platformOptions" class="platform-options">
+        <button type="button" class="platform-option selected" data-platform="tiktok">
           <span class="platform-icon">🎵</span>
           TikTok
         </button>
-
-        <button
-          type="button"
-          class="platform-option"
-          data-platform="instagram"
-        >
+        <button type="button" class="platform-option" data-platform="instagram">
           <span class="platform-icon">📸</span>
           Instagram Reels
         </button>
-
-        <button
-          type="button"
-          class="platform-option"
-          data-platform="shorts"
-        >
+        <button type="button" class="platform-option" data-platform="shorts">
           <span class="platform-icon">▶️</span>
           YouTube Shorts
         </button>
-
-        <button
-          type="button"
-          class="platform-option"
-          data-platform="youtube"
-        >
+        <button type="button" class="platform-option" data-platform="youtube">
           <span class="platform-icon">📺</span>
           YouTube
         </button>
-
-        <button
-          type="button"
-          class="platform-option"
-          data-platform="original"
-        >
+        <button type="button" class="platform-option" data-platform="original">
           <span class="platform-icon">💾</span>
           Original
         </button>
-
       </div>
-
-      <div
-        id="platformFormatNote"
-        class="platform-format-note"
-      >
+      <div id="platformFormatNote" class="platform-format-note">
         Vertical 9:16 • optimized for short-form video
       </div>
 
       <div class="recording-result-actions">
-
         <button
           id="downloadRecordingButton"
           class="modal-button submit"
@@ -1433,9 +1144,7 @@
         </button>
 
       </div>
-
     </div>
-
   </div>
 
   <!-- REPORT MODAL -->
@@ -1443,12 +1152,9 @@
     id="reportModalBackdrop"
     class="modal-backdrop"
   >
-
     <div class="report-modal">
 
-      <h2>
-        Report this person
-      </h2>
+      <h2>Report this person</h2>
 
       <p>
         Please tell us why you are reporting this user.
@@ -1457,87 +1163,57 @@
       <div class="report-options">
 
         <label class="report-option">
-
           <input
             type="radio"
             name="reportReason"
             value="Nudity / Sexual content"
           />
-
-          <span>
-            Nudity / Sexual content
-          </span>
-
+          <span>Nudity / Sexual content</span>
         </label>
 
         <label class="report-option">
-
           <input
             type="radio"
             name="reportReason"
             value="Harassment / Bullying"
           />
-
-          <span>
-            Harassment / Bullying
-          </span>
-
+          <span>Harassment / Bullying</span>
         </label>
 
         <label class="report-option">
-
           <input
             type="radio"
             name="reportReason"
             value="Hate / Abusive behavior"
           />
-
-          <span>
-            Hate / Abusive behavior
-          </span>
-
+          <span>Hate / Abusive behavior</span>
         </label>
 
         <label class="report-option">
-
           <input
             type="radio"
             name="reportReason"
             value="Spam / Advertising"
           />
-
-          <span>
-            Spam / Advertising
-          </span>
-
+          <span>Spam / Advertising</span>
         </label>
 
         <label class="report-option">
-
           <input
             type="radio"
             name="reportReason"
             value="Underage user"
           />
-
-          <span>
-            Underage user
-          </span>
-
+          <span>Underage user</span>
         </label>
 
         <label class="report-option">
-
           <input
             type="radio"
             name="reportReason"
             value="Other"
           />
-
-          <span>
-            Other
-          </span>
-
+          <span>Other</span>
         </label>
 
       </div>
@@ -1563,7 +1239,6 @@
       </div>
 
     </div>
-
   </div>
 
   <script src="/app.js"></script>
